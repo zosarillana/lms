@@ -10,7 +10,7 @@
     <link href="../../views/output.css" rel="stylesheet">
 </head>
 
-<body class="bg-[url('../../images/mainBG1.png')]">
+<body>
     <div class=" flex flex-col h-screen w-screen">
         <div class="flex-grow flex">
             <div class="flex-grow card place-items-center place-content-center pb-20" style="background-image: url('../../images/bg.jpg'); background-repeat: no-repeat; background-size: cover;">
@@ -50,7 +50,6 @@
                                         Already have an account? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up here!</a>
                                     </p>
                                 </form>
-
                             </div>
                         </div>
                     </div>
