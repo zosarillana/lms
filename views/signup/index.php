@@ -23,7 +23,7 @@
                                 <p class="text-sm font-light text-gray-900 ">
                                     Sign up here! ❤️
                                 </p>
-                                <form class="space-y-4 md:space-y-6" action="#">
+                                <form class="space-y-4 md:space-y-6" action="../../php/register.php" method="POST">
                                     <div class="col-span-2">
                                         <div class="grid grid-cols-2 gap-2">
                                             <div>
@@ -32,7 +32,7 @@
                                             </div>
                                             <div>
                                                 <label for="lasst_name" class="block mb-2 text-sm font-medium text-gray-900">Last name</label>
-                                                <input type="text" name="lasst_name" id="lasst_name" class="input input-bordered input-md w-full" placeholder="Last name" required="">
+                                                <input type="text" name="last_name" id="lasst_name" class="input input-bordered input-md w-full" placeholder="Last name" required="">
                                             </div>
                                         </div>
                                     </div>
@@ -43,15 +43,14 @@
                                         </div>
                                         <div>
                                             <label for="birthdate" class="block mb-2 text-sm font-medium text-gray-900">Birthdate</label>
-                                            <input type="text" id="datepicker" class="input input-bordered input-md w-full" placeholder="YYYY/DD/MM" required="">
-
+                                            <input type="date" name="birthdate" id="birthdate" class="input input-bordered input-md w-full" placeholder="YYYY/DD/MM" required="">
                                         </div>
                                         <div>
-                                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Gender</label>
-                                            <select class="select select-bordered w-full max-w-xs">
+                                            <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Gender</label>
+                                            <select name="gender" class="select select-bordered w-full max-w-xs">
                                                 <option disabled selected>Gender</option>
-                                                <option>Male</option>
-                                                <option>Female</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
                                             </select>
                                         </div>
                                     </div>
@@ -62,7 +61,7 @@
                                         </div>
                                         <div>
                                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                            <input type="text" name="email" id="email" placeholder="Email@gmail.com" class="input input-bordered input-md w-full" required />
+                                            <input type="email" name="email" id="email" placeholder="Email@gmail.com" class="input input-bordered input-md w-full" required />
                                         </div>
                                     </div>
                                     <div>
@@ -71,7 +70,7 @@
                                     </div>
                                     <button class="btn btn-block border-none text-gray-50 btn-secondary hover:bg-pink-400">Sign in</button>
                                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                        Already have an account? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up here!</a>
+                                        Already have an account? <a href="../../views/signin/index.php" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up here!</a>
                                     </p>
                                 </form>
                             </div>
@@ -91,7 +90,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
