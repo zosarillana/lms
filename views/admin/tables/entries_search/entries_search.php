@@ -3,10 +3,10 @@
      <div>
          <label for="show-entries" class="text-white">Show</label>
          <select id="show-entries" class="select select-bordered ml-2">
+             <option value="5">5</option>
              <option value="10">10</option>
              <option value="25">25</option>
              <option value="50">50</option>
-             <option value="100">100</option>
          </select>
          <span class="text-white">entries</span>
      </div>

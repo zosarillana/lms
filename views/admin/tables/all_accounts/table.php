@@ -18,50 +18,44 @@
                     <th class="border-b border-gray-200">ID Number</th>
                     <th class="border-b border-gray-200">Fullname</th>
                     <th class="border-b border-gray-200">User Type</th>
-                    <th class="border-b border-gray-200">Email</th>
-                    <th class="border-b border-gray-200">Contact Number</th>
-                    <th class="border-b border-gray-200">Address</th>
                     <th class="border-b border-gray-200">Date Created</th>
+                    <th class="border-b border-gray-200">Actions</th>
                 </tr>
             </thead>
-            <tbody class="bg-gray-50 text-black ">
-                <!-- row 1 -->
-                <tr class="hover:bg-slate-200">
-                    <th class="border-b text-sm border-gray-200">1</th>
-                    <th class="border-b text-sm border-gray-200">13312f</th>
-                    <td class="border-b text-sm border-gray-200">Cy Ganderton</td>
-                    <td class="border-b text-sm border-gray-200">Admin</td>
-                    <td class="border-b text-sm border-gray-200">name@gmail.com</td>
-                    <td class="border-b text-sm border-gray-200">+63993441245</td>
-                    <td class="border-b text-sm border-gray-200">Manila</td>
-                    <td class="border-b text-sm border-gray-200">2024-05-18 16:37:56</td>
-                </tr>
-                <!-- row 2 -->
-                <tr class="hover:bg-slate-200">
-                    <th class="border-b text-sm border-gray-200">2</th>
-                    <th class="border-b text-sm border-gray-200">21231f</th>
-                    <td class="border-b text-sm border-gray-200">Hart Hagerty</td>
-                    <td class="border-b text-sm border-gray-200">Teacher</td>
-                    <td class="border-b text-sm border-gray-200">name@gmail.com</td>
-                    <td class="border-b text-sm border-gray-200">+63993441245</td>
-                    <td class="border-b text-sm border-gray-200">Bacolod</td>
-                    <td class="border-b text-sm border-gray-200">2024-05-18 16:37:56</td>
-                </tr>
-                <!-- row 3 -->
-                <tr class="hover:bg-slate-200">
-                    <th class="border-b text-sm border-gray-200">3</th>
-                    <th class="border-b text-sm border-gray-200">33312c</th>
-                    <td class="border-b text-sm border-gray-200">Brice Swyre</td>
-                    <td class="border-b text-sm border-gray-200">Student</td>
-                    <td class="border-b text-sm border-gray-200">name@gmail.com</td>
-                    <td class="border-b text-sm border-gray-200">+63993441245</td>
-                    <td class="border-b text-sm border-gray-200">Siargao</td>
-                    <td class="border-b text-sm border-gray-200">2024-05-18 16:37:56</td>
-                </tr>
+            <tbody class="bg-gray-50 text-black">
+                <?php if (!empty($users)) : ?>
+                    <?php foreach ($users as $user) : ?>
+                        <tr class="hover:bg-slate-200">
+                            <td class="border-b text-sm font-bold border-gray-200"><?php echo $user['id']; ?></td>
+                            <td class="border-b text-sm font-semibold border-gray-200"><?php echo $user['user_id']; ?></td>
+                            <td class="border-b text-sm border-gray-200"><?php echo $user['user_fullname']; ?></td>
+                            <td class="border-b text-sm font-semibold border-gray-200"><?php echo $user['user_type']; ?></td>
+                            <td class="border-b text-sm border-gray-200"><?php echo $user['date_created']; ?></td>
+                            <td class="border-b text-sm border-gray-200">
+                                <!-- Use data attributes to store user data -->
+                                <?php include '../../admin/all_accounts/modal/edit_modal.php'; ?>
+                                <?php include '../../admin/all_accounts/modal/delete_modal.php'; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="6" class="border-b text-sm border-gray-200 text-center">No users found</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
         <?php include '../tables/pagination/pagination.php'; ?>
     </div>
 </div>
 
+
 <?php include '../tables/scripts/paginate.php'; ?>
+<script>
+    function showModal(modalId) {
+        var modal = document.getElementById(modalId);
+        if (modal) {
+            modal.showModal();
+        }
+    }
+</script>

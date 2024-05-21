@@ -1,9 +1,8 @@
 <?php
 session_start();
 include '../../../php/db_connect.php';
-include '../../../php/courses/fetch_courses.php';
+include '../../../php/schedules/fetch_schedules.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en" data-theme="dracula">
 
@@ -21,7 +20,7 @@ include '../../../php/courses/fetch_courses.php';
     <div class="flex flex-col h-screen ">
         <div class="grid place-items-center pt-5">
             <div class="max-w-6xl w-full">
-                <?php include '../tables/course_table/table.php'; ?>
+                <?php include '../tables/schedule_table/table.php'; ?>
                 <div class="mt-12">
                     <!-- Display success message -->
                     <?php
@@ -74,5 +73,5 @@ include '../../../php/courses/fetch_courses.php';
         setTimeout(function() {
             alertDiv.remove();
         }, 1000); // Wait for the fade out transition to complete before removing
-    }, 3000); // 3000 milliseconds = 3 seconds
+    }, 5000); // 3000 milliseconds = 3 seconds
 </script>

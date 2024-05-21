@@ -25,9 +25,10 @@
                     <li class="font-normal text-lg"><a href="../../../views/admin/teachers/index.php">Teacher</a></li>
                     <li class="font-normal text-lg"><a href="../../../views/admin/courses/index.php">Course</a></li>
                     <li class=" font-normal text-lg"><a href="../../../views/admin/subjects/index.php">Subjects</a></li>
+                    <li class=" font-normal text-lg"><a href="../../../views/admin/schedules/index.php">Schedules</a></li>
                     <li class="font-normal text-lg"><a href="../../../views/admin/credentials/index.php">Credential Requests</a></li>
                     <li class="font-normal text-lg"><a href="../../../views/admin/announcements/index.php">Announcement</a></li>
-                    <li class="font-normal text-lg"><a>Settings</a></li>
+                    <li class="font-normal text-lg"><a href="../../../views/admin/settings/index.php">Settings</a></li>
                     <li class="font-normal text-lg"><a>Logout</a></li>
                 </ul>
             </div>
