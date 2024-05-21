@@ -1,3 +1,9 @@
+<?php
+session_start();
+// Include database connection
+include "../../../php/db_connect.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en" data-theme="dracula">
 
@@ -12,7 +18,6 @@
 </head>
 
 <body>
-
 
     <div class="flex flex-col h-screen w-full ">
         <div class="grid place-items-center pt-12">

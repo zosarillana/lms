@@ -1,3 +1,8 @@
+<?php
+session_start();
+include '../../../php/db_connect.php';
+include '../../../php/all_accounts/fetch_users.php';
+?>
 <!DOCTYPE html>
 <html lang="en" data-theme="dracula">
 
@@ -26,25 +31,55 @@
                                         Set Announcent!</h1>
                                     <p class="text-sm font-light text-white ">
                                         Select a file to set an announcement.
+                                    <div class="mt-12">
+                                        <!-- Display success message -->
+                                        <?php
+                                        if (isset($_SESSION['success_message'])) {
+                                            echo '
+                    <div id="alertDiv" role="alert" class="alert alert-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>' . $_SESSION['success_message'] . '</span>
+                    </div>
+                    ';
+                                            unset($_SESSION['success_message']); // Clear the message
+                                        }
+                                        ?>
+
+                                        <!-- Display error message -->
+                                        <?php
+                                        if (isset($_SESSION['error_message'])) {
+                                            echo '
+                    <div id="alertDiv" role="alert" class="alert alert-error">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        <span>' . $_SESSION['error_message'] . '</span>
+                    </div>
+                    ';
+                                            unset($_SESSION['error_message']); // Clear the message
+                                        }
+                                        ?>
+                                    </div>
                                     </p>
-                                    <form class="space-y-4 md:space-y-6" action="" method="POST">
+                                    <form enctype="multipart/form-data" class="space-y-4 md:space-y-6" action="../../../php/announcement/announcement.php" method="POST">
                                         <div>
                                             <label class="block mb-2 text-sm font-medium text-white">Select file</label>
-                                            <input type="file" class="file-input file-input-bordered file-input-primary w-full max-w" />
+                                            <input type="file" name=file class="file-input file-input-bordered file-input-primary w-full max-w" />
                                         </div>
 
                                         <div>
-                                            <label for="password" class="block mb-2 text-sm font-medium text-white">Select Date and time of announcement</label>
-                                            <input type="text" id="datetimepicker" placeholder="Select Date and Time" class="input input-bordered w-full max-w">
+                                            <label for="announcement_date" class="block mb-2 text-sm font-medium text-white">Select Date and time of announcement</label>
+                                            <input type="text" name="announcement_date" id="datetimepicker" placeholder="Select Date and Time" class="input input-bordered w-full max-w">
                                         </div>
 
                                         <div>
-                                            <label class="block mb-2 text-sm font-medium text-white">Accouncement Message</label>
-                                            <textarea class="textarea textarea-bordered w-full max-w" placeholder="Bio"></textarea>
+                                            <label for="announcement_msg" class="block mb-2 text-sm font-medium text-white">Accouncement Message</label>
+                                            <textarea name="announcement_msg" class="textarea textarea-bordered w-full max-w" placeholder="Bio"></textarea>
                                         </div>
 
                                         <button type="submit" class="btn btn-block border-none text-gray-50 btn-secondary hover:bg-pink-400">Set Announcent</button>
-
                                     </form>
                                 </div>
                             </div>
@@ -52,6 +87,7 @@
                     </div>
                 </section>
             </div>
+
         </div>
     </div>
 </body>
@@ -61,6 +97,20 @@
         dateFormat: "Y-m-d H:i",
         // Add more options as needed
     });
+
+    // Get the alert element
+    var alertDiv = document.getElementById("alertDiv");
+
+    // Set a timeout to fade out the alert after 3 seconds
+    setTimeout(function() {
+        // Apply transition to fade out smoothly
+        alertDiv.style.transition = "opacity 1s ease";
+        alertDiv.style.opacity = "0";
+        // Optionally, you can remove the alert after fading out
+        setTimeout(function() {
+            alertDiv.remove();
+        }, 1000); // Wait for the fade out transition to complete before removing
+    }, 3000); // 3000 milliseconds = 3 seconds
 </script>
 
 </html>

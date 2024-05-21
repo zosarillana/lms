@@ -1,9 +1,12 @@
-<!-- Button to open modal -->
+<?php
+// Button to open modal
+?>
 <button class="btn btn-sm bg-green-600 border-none text-gray-50 hover:bg-green-700" onclick="showModal('my_modal_3<?php echo $teacher['id']; ?>')">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
     </svg>
 </button>
+
 <dialog id="my_modal_3<?php echo $teacher['id']; ?>" class="modal">
     <div class=" modal-box w-11/12 max-w-5xl">
         <form method="dialog">
@@ -56,15 +59,17 @@
                         } else {
                             echo "Error executing query: " . $conn->error;
                         }
-                        $conn->close();
                         ?>
                     </div>
                 </div>
                 <div>
                     <label for="select_strand" class="block mb-2 text-sm font-medium text-gray-50">Select strand</label>
                     <?php
+                    // Close the first connection and re-establish it for the second query
+                    $conn->close();
                     include '../../../php/db_connect.php';
-                    $teacher_strand = $teacher['teacher_strand'];
+
+                    $teacher_strand = $conn->real_escape_string($teacher['teacher_strand']);
                     $query = "SELECT subject_id, strand_id, schedule_subject_name, schedule_strand_name, schedule_time, schedule_day FROM schedules WHERE schedule_strand_name = '$teacher_strand'";
                     $result = $conn->query($query);
                     if ($result) {
@@ -95,6 +100,5 @@
             </div>
     </div>
     </form>
-
     </div>
 </dialog>

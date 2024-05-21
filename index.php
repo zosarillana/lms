@@ -1,3 +1,10 @@
+<?php
+session_start();
+include './php/db_connect.php';
+
+?>
+
+
 <!doctype html>
 <html data-theme="dracula">
 
@@ -33,7 +40,38 @@
                                 <p class="text-sm font-semibold text-gray-900 ">
                                     Welcome to CampusConnect 📚
                                 </p>
-                                <form class="space-y-4 md:space-y-6" action="../../php/login.php" method="POST">
+                                <div class="mt-12">
+                                    <!-- Display success message -->
+                                    <?php
+                                    if (isset($_SESSION['success_message'])) {
+                                        echo '
+                    <div id="alertDiv" role="alert" class="alert alert-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>' . $_SESSION['success_message'] . '</span>
+                    </div>
+                    ';
+                                        unset($_SESSION['success_message']); // Clear the message
+                                    }
+                                    ?>
+
+                                    <!-- Display error message -->
+                                    <?php
+                                    if (isset($_SESSION['error_message'])) {
+                                        echo '
+                    <div id="alertDiv" role="alert" class="alert alert-error">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        <span>' . $_SESSION['error_message'] . '</span>
+                    </div>
+                    ';
+                                        unset($_SESSION['error_message']); // Clear the message
+                                    }
+                                    ?>
+                                </div>
+                                <form class="space-y-4 md:space-y-6" action="./php/login.php" method="POST">
                                     <div>
                                         <label class="block mb-2 text-sm font-medium text-gray-900">Username</label>
                                         <input type="text" name="username" placeholder="Username" class="input input-bordered input-md w-full" required />
@@ -56,3 +94,18 @@
 </body>
 
 </html>
+<script>
+    // Get the alert element
+    var alertDiv = document.getElementById("alertDiv");
+
+    // Set a timeout to fade out the alert after 3 seconds
+    setTimeout(function() {
+        // Apply transition to fade out smoothly
+        alertDiv.style.transition = "opacity 1s ease";
+        alertDiv.style.opacity = "0";
+        // Optionally, you can remove the alert after fading out
+        setTimeout(function() {
+            alertDiv.remove();
+        }, 1000); // Wait for the fade out transition to complete before removing
+    }, 3000); // 3000 milliseconds = 3 seconds
+</script>

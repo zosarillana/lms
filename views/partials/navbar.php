@@ -29,7 +29,7 @@
                     <li class="font-normal text-lg"><a href="../../../views/admin/credentials/index.php">Credential Requests</a></li>
                     <li class="font-normal text-lg"><a href="../../../views/admin/announcements/index.php">Announcement</a></li>
                     <li class="font-normal text-lg"><a href="../../../views/admin/settings/index.php">Settings</a></li>
-                    <li class="font-normal text-lg"><a>Logout</a></li>
+                    <li class="font-normal text-lg"><a href="../../../php/logout.php">Logout</a></li>
                 </ul>
             </div>
         </div>

@@ -40,7 +40,7 @@
 
                                 <?php include '../../admin/teachers/modal/edit_modal.php'; ?>
                                 <?php include '../../admin/teachers/modal/add_subject_students.php'; ?>
-                                <?php include '../../admin/students/modal/delete_modal.php'; ?>
+                                <?php include '../../admin/teachers/modal/delete_modal.php'; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
