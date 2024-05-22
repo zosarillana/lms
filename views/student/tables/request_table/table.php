@@ -24,22 +24,34 @@
                 </tr>
             </thead>
             <tbody class="bg-gray-50 text-black ">
-                <!-- row 1 -->
-                <tr class="hover:bg-slate-200">
-                    <th class="border-b text-sm border-gray-200">1</th>
-                    <th class="border-b text-sm border-gray-200">thorfin karlsefni</th>
-                    <th class="border-b text-sm border-gray-200">FORM 137</th>
-                    <td class="border-b text-sm border-gray-200">Request of form</td>
-                    <td class="border-b text-sm border-gray-200">
-                        <p class="text-white text-xs font-semibold bg-red-600 rounded-full px-3 py-1 inline-block">Pending</p>
-                    </td>
-                    <td class="border-b text-sm border-gray-200">2024-05-18 16:37:56</td>
-                    <td class="border-b text-sm border-gray-200">
-                        <div class="grid grid-cols-2">
-                            <?php include '../../admin/credentials/modal/view_modal.php'; ?>
-                    </td>
-                </tr>
+                <?php
+                $student_id = $_SESSION['user_id'];
+                if (!empty($credentialList)) :
+                    foreach ($credentialList as $subjectList) :
+                        // Check if the teacher_id matches
+                        if ($subjectList['student_id'] == $student_id) :
+                ?>
+                            <tr class="hover:bg-slate-200">
 
+                                <th class="border-b text-sm border-gray-200"><?php echo $subjectList['id']; ?></th>
+                                <th class="border-b text-sm border-gray-200"><?php echo $subjectList['student_fullname']; ?></th>
+                                <td class="border-b text-sm border-gray-200"><?php echo $subjectList['request']; ?></td>
+                                <td class="border-b text-sm border-gray-200"><?php echo $subjectList['message']; ?></td>
+                                <td class="border-b text-sm border-gray-200"><?php echo $subjectList['status']; ?></td>
+                                <td class="border-b text-sm border-gray-200"><?php echo $subjectList['date_created']; ?></td>
+                                <td class="border-b text-sm border-gray-200">
+                                    <?php include '../../student/request/modal/view_modal.php'; ?>
+                                </td>
+                            </tr>
+                    <?php
+                        endif;
+                    endforeach;
+                else :
+                    ?>
+                    <tr>
+                        <td colspan="8" class="border-b text-sm border-gray-200 text-center">No Credentials found</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
         <?php include '../tables/pagination/pagination.php'; ?>

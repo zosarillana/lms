@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div>
-                    <label for="select_strand" class="block mb-2 text-sm font-medium text-gray-50">Select strand</label>
+                    <label for="select_strand" class="block mb-2 text-sm font-medium text-gray-50">Select subject</label>
                     <?php
                     // Close the first connection and re-establish it for the second query
                     $conn->close();
@@ -75,7 +75,7 @@
                     if ($result) {
                     ?>
                         <select required name="select_strand" class="text-gray-50 select select-bordered w-full max-w-xs">
-                            <option selected disabled>Select strand</option>
+                            <option selected disabled>Select subject</option>
                             <?php
                             while ($row = $result->fetch_assoc()) {
                                 echo "<option value=\"" . $row['subject_id'] . "," . $row['strand_id'] . ","
@@ -102,6 +102,12 @@
                             <option value="1st Semester">1st Semester</option>
                             <option value="2nd Semester">2nd Semester</option>
                         </select>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="semester" class="block mb-2 text-sm font-medium text-gray-50">Enter School Year</label>
+                        <input name="school_year" class="input text-gray-50 input-bordered input-md w-full" type="text" pattern="\d{4}-\d{4}" placeholder="2022-2023" />
                     </div>
                 </div>
             </div>

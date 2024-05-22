@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../../../php/db_connect.php';
-include '../../../php/student_list/fetch_student_list.php';
+include '../../../php/attendance/fetch_attendance.php';
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="dracula">
@@ -21,9 +21,8 @@ include '../../../php/student_list/fetch_student_list.php';
         <div class="grid place-items-center pt-5">
             <div class="max-w-6xl w-full">
                 <?php include '../tables/attendance_table/table.php'; ?>
-                <div class="mt-12">
-                    <!-- Display success message -->
-                    <?php
+                 <!-- Display success message -->
+                 <?php
                     if (isset($_SESSION['success_message'])) {
                         echo '
                     <div id="alertDiv" role="alert" class="alert alert-success">
@@ -51,6 +50,7 @@ include '../../../php/student_list/fetch_student_list.php';
                         unset($_SESSION['error_message']); // Clear the message
                     }
                     ?>
+                <div class="mt-12">
                 </div>
             </div>
         </div>

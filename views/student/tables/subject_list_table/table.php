@@ -22,28 +22,42 @@
                 </tr>
             </thead>
             <tbody class="bg-gray-50 text-black ">
-
-                <tr class="hover:bg-slate-200">
-                    <th class="border-b text-sm border-gray-200">Filipino</th>
-                    <th class="border-b text-sm border-gray-200">1st Semester</th>
-                    <td class="border-b text-sm border-gray-200">Grade 11</td>
-                    <td class="border-b text-sm border-gray-200">Monday</td>
-                    <td class="border-b text-sm border-gray-200">7:00 - 8:00</td>
-                    <td class="border-b text-sm border-gray-200">2024-05-22 06:44:57</td>
-
-                </tr>
+                <?php
+                $student_id = $_SESSION['user_id'];
+                if (!empty($subjectLists)) :
+                    foreach ($subjectLists as $subjectList) :
+                        // Check if the teacher_id matches
+                        if ($subjectList['student_id'] == $student_id) :
+                ?>
+                            <tr class="hover:bg-slate-200">
+                               
+                                <th class="border-b text-sm border-gray-200"><?php echo $subjectList['student_schedule_subject_name']; ?></th>
+                                <th class="border-b text-sm border-gray-200"><?php echo $subjectList['semester']; ?></th>
+                                <td class="border-b text-sm border-gray-200"><?php echo $subjectList['grade_level']; ?></td>
+                                <td class="border-b text-sm border-gray-200"><?php echo $subjectList['student_schedule_subject_schedule_day']; ?></td>
+                                <td class="border-b text-sm border-gray-200"><?php echo $subjectList['student_schedule_subject_schedule_time']; ?></td>
+                                <td class="border-b text-sm border-gray-200"><?php echo $subjectList['school_year']; ?></td>
+                            </tr>
+                    <?php
+                        endif;
+                    endforeach;
+                else :
+                    ?>
+                    <tr>
+                        <td colspan="8" class="border-b text-sm border-gray-200 text-center">No grades found</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
         <?php include '../tables/pagination/pagination.php'; ?>
     </div>
-</div>
 
-<?php include '../tables/scripts/paginate.php'; ?>
-<script>
-    function showModal(modalId) {
-        var modal = document.getElementById(modalId);
-        if (modal) {
-            modal.showModal();
+    <?php include '../tables/scripts/paginate.php'; ?>
+    <script>
+        function showModal(modalId) {
+            var modal = document.getElementById(modalId);
+            if (modal) {
+                modal.showModal();
+            }
         }
-    }
-</script>
+    </script>

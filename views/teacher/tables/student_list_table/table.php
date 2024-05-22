@@ -17,6 +17,7 @@
                     <th class="border-b border-gray-200">Fullname</th>
                     <th class="border-b border-gray-200">Strand</th>
                     <th class="border-b border-gray-200">Grade Level</th>
+                    <th class="border-b border-gray-200">School year</th>
                     <th class="border-b border-gray-200">Date Created</th>
                     <th class="border-b border-gray-200">Action</th>
                 </tr>
@@ -49,17 +50,18 @@
                             <td class="border-b text-sm border-gray-200"><?php echo htmlspecialchars($studentList['student_fname'] . " " . $studentList['student_lname']); ?></td>
                             <td class="border-b text-sm border-gray-200"><?php echo htmlspecialchars($studentList['student_schedule_strand_name']); ?></td>
                             <td class="border-b text-sm border-gray-200"><?php echo htmlspecialchars($studentList['grade_level']); ?></td>
+                            <td class="border-b text-sm border-gray-200"><?php echo htmlspecialchars($studentList['school_year']); ?></td>
                             <td class="border-b text-sm border-gray-200"><?php echo htmlspecialchars($studentList['date_created']); ?></td>
                             <td class="border-b text-sm border-gray-200">
                                 <?php include '../../teacher/student_list/modal/edit_modal.php'; ?>
-                                <?php include '../../admin/students/modal/delete_modal.php'; ?>
+                                <?php include '../../teacher/student_list/modal/delete_modal.php'; ?>
                                 <?php include '../../teacher/student_list/modal/view_modal.php'; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php } else { ?>
                     <tr>
-                        <td colspan="7" class="border-b text-sm border-gray-200 text-center">No students found</td>
+                        <td colspan="8" class="border-b text-sm border-gray-200 text-center">No students found</td>
                     </tr>
                 <?php } ?>
 

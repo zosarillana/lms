@@ -20,12 +20,27 @@
                 </tr>
             </thead>
             <tbody class="bg-gray-50 text-black ">
-
-                <tr class="hover:bg-slate-200">
-                    <th class="border-b text-sm border-gray-200">thorfin karlsefni</th>
-                    <th class="border-b text-sm border-gray-200">85%</th>
-                    <td class="border-b text-sm border-gray-200">July</td>
-                </tr>
+                <?php
+                $student_id = $_SESSION['user_id'];
+                if (!empty($attendanceList)) :
+                    foreach ($attendanceList as $subjectList) :
+                        // Check if the teacher_id matches
+                        if ($subjectList['student_id'] == $student_id) :
+                ?>
+                            <tr class="hover:bg-slate-200">                               
+                                <th class="border-b text-sm border-gray-200"><?php echo $subjectList['student_fullname']; ?></th>
+                                <th class="border-b text-sm border-gray-200"><?php echo $subjectList['percentage']; ?></th>
+                                <td class="border-b text-sm border-gray-200"><?php echo $subjectList['month']; ?></td>                                
+                            </tr>
+                    <?php
+                        endif;
+                    endforeach;
+                else :
+                    ?>
+                    <tr>
+                        <td colspan="8" class="border-b text-sm border-gray-200 text-center">No grades found</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
         <?php include '../tables/pagination/pagination.php'; ?>

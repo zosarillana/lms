@@ -24,7 +24,7 @@
                     <li class="font-normal text-lg"><a href="../../../views/student/subject_list/index.php">Subject List</a></li>
                     <li class=" font-normal text-lg"><a href="../../../views/student/attendance/index.php">Attendance</a></li>
                     <li class=" font-normal text-lg"><a href="../../../views/student/request/index.php">Requests</a></li>
-                    <li class="font-normal text-lg"><a href="../../../views/teacher/settings/index.php">Settings</a></li>
+                    <li class="font-normal text-lg"><a href="../../../views/student/settings/index.php">Settings</a></li>
                     <li class="font-normal text-lg"><a href="../../../php/logout.php">Logout</a></li>
                 </ul>
             </div>

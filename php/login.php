@@ -26,10 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_username'] = $user_data['user_username'];
 
             // Check user type before redirecting
+            // Check user type before redirecting
             if ($user_data['user_type'] == 'Teacher') {
                 // Password is correct, redirect to teacher dashboard
                 $_SESSION['success_message'] = "Login successful";
                 header("Location: ../views/teacher/dashboard/index.php");
+            } elseif ($user_data['user_type'] == 'Student') {
+                // Password is correct, redirect to student dashboard
+                $_SESSION['success_message'] = "Login successful";
+                header("Location: ../views/student/dashboard/index.php");
             } else {
                 // Password is correct, redirect to admin dashboard (or relevant page)
                 $_SESSION['success_message'] = "Login successful";

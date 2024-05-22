@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $teacher_fname = $_POST['teacher_fname'];
         $teacher_lname = $_POST['teacher_lname'];
         $semester = $_POST['semester'];
+        $school_year = $_POST['school_year'];
 
         // Explode student and strand data
         list($student_id, $student_fname, $student_lname, $student_gradelevel) = explode(",", $_POST['select_student']);
@@ -30,13 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['error_message'] = "Error: Student already has a schedule set on this semester, on the same time and day (schedule conflict).";
         } else {
             // Insert into student_with_subjects table
-            $stmt = $conn->prepare("INSERT INTO student_with_subjects (teacher_id, student_id, grade_level, teacher_fname, teacher_lname, student_fname, student_lname, subject_id, strand_id, semester, student_schedule_subject_name, student_schedule_subject_schedule_day, student_schedule_subject_schedule_time, student_schedule_strand_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO student_with_subjects (teacher_id, student_id, grade_level, teacher_fname, teacher_lname, student_fname, student_lname, subject_id, strand_id, semester, school_year,student_schedule_subject_name, student_schedule_subject_schedule_day, student_schedule_subject_schedule_time, student_schedule_strand_name) VALUES (?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             if (!$stmt) {
                 throw new Exception("Error preparing statement: " . $conn->error);
             }
-            $stmt->bind_param("iissssssssssss", $teacher_id, $student_id, $student_gradelevel, $teacher_fname, $teacher_lname, $student_fname, $student_lname, $subject_id, $strand_id, $semester, $student_schedule_subject_name, $student_schedule_subject_schedule_day, $student_schedule_subject_schedule_time, $student_schedule_strand_name);
+            $stmt->bind_param("iisssssssssssss", $teacher_id, $student_id, $student_gradelevel, $teacher_fname, $teacher_lname, $student_fname, $student_lname, $subject_id, $strand_id, $semester, $school_year, $student_schedule_subject_name, $student_schedule_subject_schedule_day, $student_schedule_subject_schedule_time, $student_schedule_strand_name);
             if ($stmt->execute()) {
-                $_SESSION['success_message'] = "Added a new student.";
+                $_SESSION['success_message'] = "Added a new student to teacher.";
             } else {
                 throw new Exception("Error: " . $stmt->error);
             }

@@ -21,19 +21,30 @@
                 </tr>
             </thead>
             <tbody class="bg-gray-50 text-black ">
-
+            <?php
+                $teacher_id = $_SESSION['user_id'];
+                if (!empty($attendanceList)) :
+                    foreach ($attendanceList as $attendance) :
+                        // Check if the teacher_id matches
+                        if ($attendance['teacher_id'] == $teacher_id) :
+                ?>
                 <tr class="hover:bg-slate-200">
-                    <th class="border-b text-sm border-gray-200">thorfin karlsefni</th>
-                    <th class="border-b text-sm border-gray-200">85%</th>
-                    <td class="border-b text-sm border-gray-200">July</td>
+                    <th class="border-b text-sm border-gray-200"><?php echo $attendance['student_fullname']; ?></th>
+                    <th class="border-b text-sm border-gray-200"><?php echo $attendance['percentage']; ?></th>
+                    <td class="border-b text-sm border-gray-200"><?php echo $attendance['month']; ?></td>
                     <td class="border-b text-sm border-gray-200">
                         <?php include '../../teacher/student_list/modal/edit_modal.php'; ?>
                         <?php include '../../admin/students/modal/delete_modal.php'; ?>
                     </td>
-                </tr>
-
-
-            </tbody>
+                    <?php
+                        endif;
+                    endforeach;
+                else :
+                    ?>
+                    <tr>
+                        <td colspan="8" class="border-b text-sm border-gray-200 text-center">No grades found</td>
+                    </tr>
+                <?php endif; ?>
         </table>
         <?php include '../tables/pagination/pagination.php'; ?>
     </div>
