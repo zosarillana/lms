@@ -6,10 +6,10 @@
         </ul>
     </div>
     <p class="text-lg font-bold mb-5">Grades</p>
-    <?php include '../../student/grades/modal/print_modal.php'; ?>
+    <button onclick="printExternalPage()" class="btn px-12 border-none text-gray-50 bg-blue-500 hover:bg-blue-600 mb-4">Print Grade</button>
     <?php include '../tables/entries_search/entries_search.php'; ?>
     <div class="overflow-x-auto rounded-md">
-    <table class="table table-lg border-none">
+        <table class="table table-lg border-none">
             <!-- head -->
             <thead class="bg-blue-500 text-white">
                 <tr>
@@ -20,7 +20,7 @@
                     <th class="border-b border-gray-200">2nd Quarter</th>
                     <th class="border-b border-gray-200">Final</th>
                     <th class="border-b border-gray-200">Date Created</th>
-                  
+
                 </tr>
             </thead>
             <tbody class="bg-gray-50 text-black ">
@@ -38,7 +38,7 @@
                                 <td class="border-b text-sm border-gray-200"><?php echo $studentGrade['1st_quarter']; ?></td>
                                 <td class="border-b text-sm border-gray-200"><?php echo $studentGrade['2nd_quarter']; ?></td>
                                 <td class="border-b text-sm border-gray-200"><?php echo $studentGrade['final']; ?></td>
-                                <td class="border-b text-sm border-gray-200"><?php echo $studentGrade['date_created']; ?></td>                                
+                                <td class="border-b text-sm border-gray-200"><?php echo $studentGrade['date_created']; ?></td>
                             </tr>
                     <?php
                         endif;
@@ -62,5 +62,13 @@
         if (modal) {
             modal.showModal();
         }
+    }
+
+    function printExternalPage() {
+        // Open the external page in a new window and print it
+        var printWindow = window.open('../grades/print_html/printable.php', '_blank', 'height=600,width=800');
+        printWindow.onload = function() {
+            printWindow.print();
+        };
     }
 </script>

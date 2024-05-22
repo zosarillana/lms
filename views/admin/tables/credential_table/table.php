@@ -23,25 +23,31 @@
                 </tr>
             </thead>
             <tbody class="bg-gray-50 text-black ">
-                <!-- row 1 -->
-                <tr class="hover:bg-slate-200">
-                    <th class="border-b text-sm border-gray-200">1</th>
-                    <th class="border-b text-sm border-gray-200">13312f</th>
-                    <th class="border-b text-sm border-gray-200">13312f</th>
-                    <td class="border-b text-sm border-gray-200">BSIT</td>
-                    <td class="border-b text-sm border-gray-200">
-                        <p class="text-white text-xs font-semibold bg-green-600 rounded-full px-3 py-1 inline-block">Approved</p>
-                    </td>
-                    <td class="border-b text-sm border-gray-200">2024-05-18 16:37:56</td>
-                    <td class="border-b text-sm border-gray-200">
-                        <div class="grid grid-cols-2">
-                            <div>
-                                <button class="btn w-[100px] btn-xs border-none text-white bg-green-500 hover:bg-green-900">Approve</button>
-                            </div>
-                            <?php include '../../admin/credentials/modal/view_modal.php'; ?>
-                    </td>
-                </tr>
+                <?php if (!empty($credentialList)) : ?>
+                    <?php foreach ($credentialList as $subjectList) : ?>
 
+                        <tr class="hover:bg-slate-200">
+
+                            <th class="border-b text-sm border-gray-200"><?php echo $subjectList['id']; ?></th>
+                            <th class="border-b text-sm border-gray-200"><?php echo $subjectList['student_fullname']; ?></th>
+                            <td class="border-b text-sm border-gray-200"><?php echo $subjectList['request']; ?></td>
+                            <td class="border-b text-sm border-gray-200"><?php echo $subjectList['message']; ?></td>
+                            <td class="border-b text-sm border-gray-200"><?php echo $subjectList['status']; ?></td>
+                            <td class="border-b text-sm border-gray-200"><?php echo $subjectList['date_created']; ?></td>
+                            <td class="border-b text-sm border-gray-200">
+                                <?php include '../../admin/credentials/modal/approve_modal.php'; ?>
+                                <?php include '../../admin/credentials/modal/view_modal.php'; ?>
+                            </td>
+                        </tr>
+                    <?php
+
+                    endforeach;
+                else :
+                    ?>
+                    <tr>
+                        <td colspan="8" class="border-b text-sm border-gray-200 text-center">No Credentials found</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
         <?php include '../tables/pagination/pagination.php'; ?>
@@ -49,3 +55,15 @@
 </div>
 
 <?php include '../tables/scripts/paginate.php'; ?>
+
+
+
+<?php include '../tables/scripts/paginate.php'; ?>
+<script>
+    function showModal(modalId) {
+        var modal = document.getElementById(modalId);
+        if (modal) {
+            modal.showModal();
+        }
+    }
+</script>

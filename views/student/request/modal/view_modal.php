@@ -1,46 +1,40 @@
- <div>
-     <!-- You can open the modal using ID.showModal() method -->
-     <button class="btn w-[100px] btn-xs border-none text-white bg-pink-500 hover:bg-pink-900" onclick="my_modal_4.showModal()">View</button>
-     <dialog id="my_modal_4" class="modal">
-         <div class="modal-box w-11/12 max-w-5xl">
-             <h3 class="font-bold text-white text-lg">Student details</h3>
-             <p class="py-4">
-             <div class="grid grid-cols-2 gap-4 pb-5">
-                 <div>
-                     <label for="submitted_by" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Submitted
-                         by</label>
-                     <input disabled type="text" name="submitted_by" id="submitted_by" class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cy Ganderton" required="">
-                 </div>
-                 <div>
-                     <label for="course" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Course</label>
-                     <input disabled type="text" name="course" id="course" class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="BSIT" required="">
-                 </div>
-             </div>
-             <div class="grid grid-cols-3 gap-4">
-                 <div>
-                     <label for="document_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Document
-                         name</label>
-                     <input disabled type="text" name="document_name" id="document_name" class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Data Management System" required="">
-                 </div>
-                 <div>
-                     <label for="date_submitted" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
-                         Submitted</label>
-                     <input disabled type="text" name="date_submitted" id="date_submitted" class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="BSIT" required="">
-                 </div>
-                 <div>
-                     <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                     <input disabled type="text" name="status" id="status" class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Approved" required="">
-                 </div>
-             </div>
+<button class="btn btn-sm bg-gray-600 border-none text-gray-50 hover:bg-gray-700" onclick="showModal('my_modal_3<?php echo $subjectList['id']; ?>')">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+        <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+        <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />
+    </svg>
 
+</button>
+<dialog id="my_modal_3<?php echo $subjectList['id']; ?>" class="modal">
 
-
-             <div class="modal-action">
-                 <form method="dialog">
-                     <!-- if there is a button, it will close the modal -->
-                     <button class="btn w-[150px] bg-red-500 hover:bg-red-700 text-white">Close</button>
-                 </form>
-             </div>
-         </div>
-     </dialog>
- </div>
+    <div class=" modal-box w-11/12 max-w-5xl text-gray-50">
+        <form method="post">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="document.getElementById('my_modal_<?php echo $subjectList['student_id']; ?>').close()">✕</button>
+        </form>
+        <h3 class="font-bold text text-lg mb-5">Edit profile</h3>
+        <!-- Form start -->
+        <form id="admin_form" action="../../../php/student_list/edit_student_list.php" method="post">
+            <h3 class="font-bold text-lg mb-8">Primary details.</h3>
+            <div class="grid grid-cols-3 gap-2 mb-3">
+                <div>
+                    <input hidden type="text" value="<?php echo $subjectList['id']; ?>" name="id" placeholder="Type id number here" class="input input-bordered w-full max-w mb-5" />
+                    <label for="student_id" class="block mb-2 text-sm font-medium text-gray-50">Student fullname</label>
+                    <input readonly type="text" name="student_id" value="<?php echo $subjectList['student_fullname']; ?>" id="student_id" class="input input-bordered input-md w-full" placeholder="Student id" readonly>
+                </div>
+                <div>
+                    <label for="student_fname" class="block mb-2 text-sm font-medium text-gray-50">Request</label>
+                    <input type="text" name="student_fname" value="<?php echo $subjectList['request']; ?>" id="student_fname" class="input input-bordered input-md w-full" placeholder="First name" readonly>
+                </div>
+                <div>
+                    <label for="student_mname" class="block mb-2 text-sm font-medium text-gray-50">Status</label>
+                    <input type="text" name="student_mname" value="<?php echo $subjectList['status']; ?>" id="student_mname" class="input input-bordered input-md w-full" placeholder="Middle name" readonly>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 gap-2 mb-5">
+                <div>
+                    <label for="first_quarter" class="block mb-2 text-sm font-medium text-gray-50">Message</label>
+                    <textarea name="message" class="textarea textarea-bordered w-full max-w" placeholder="reason for request" readonly> <?php echo $subjectList['message']; ?> </textarea>
+                </div>
+            </div>
+    </div>
+</dialog>

@@ -5,7 +5,7 @@ include "../../php/db_connect.php";
 // Check connection
 if ($conn->connect_error) {
     $_SESSION['error_message'] = "Connection failed: " . $conn->connect_error;
-    header("Location: ../../views/admin/profile.php");
+    header("Location: " . $_SERVER['HTTP_REFERER']);
     exit();
 }
 
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the statement is prepared successfully
     if (!$stmt) {
         $_SESSION['error_message'] = "Error: " . $conn->error;
-        header("Location: ../../views/admin/settings/index.php");
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         exit();
     }
 
@@ -56,6 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the connection
 $conn->close();
 
-// Redirect to profile page
-header("Location: ../../views/admin/settings/index.php");
+// Redirect to referring page
+if (isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER'])) {
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+} else {
+    // Fallback in case HTTP_REFERER is not set
+    header("Location: ../../views/admin/profile.php");
+}
 exit(); // Ensure that subsequent code is not executed after redirection

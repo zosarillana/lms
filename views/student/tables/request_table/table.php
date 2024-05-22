@@ -59,3 +59,12 @@
 </div>
 
 <?php include '../tables/scripts/paginate.php'; ?>
+
+<script>
+    function showModal(modalId) {
+        var modal = document.getElementById(modalId);
+        if (modal) {
+            modal.showModal();
+        }
+    }
+</script>
