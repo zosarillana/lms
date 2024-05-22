@@ -42,7 +42,7 @@
                         <label for="select_student" class="block mb-2 text-sm font-medium text-gray-50">Select student</label>
                         <?php
                         include '../../../php/db_connect.php';
-                        $query = "SELECT student_id, student_fname, student_lname FROM student_accounts";
+                        $query = "SELECT student_id, student_fname, student_lname, student_gradelevel FROM student_accounts";
                         $result = $conn->query($query);
                         if ($result) {
                         ?>
@@ -50,7 +50,7 @@
                                 <option disabled selected>Select a student</option>
                                 <?php
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<option value=\"" . $row['student_id'] . "," . $row['student_fname'] . "," . $row['student_lname'] . "\">" . $row['student_fname'] . " " . $row['student_lname'] . "</option>";
+                                    echo "<option value=\"" . $row['student_id'] . "," . $row['student_fname'] . "," . $row['student_lname'] . "," . $row['student_gradelevel'] . "\">" . $row['student_fname'] . " " . $row['student_lname'] . "</option>";
                                 }
                                 ?>
                             </select>
@@ -94,8 +94,19 @@
                     $conn->close();
                     ?>
                 </div>
+                <div>
+                    <div>
+                        <label for="semester" class="block mb-2 text-sm font-medium text-gray-50">Select semester</label>
+                        <select required name="semester" class="text-gray-50 select select-bordered w-full max-w-xs">
+                            <option disabled selected>Select a student</option>
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="modal-action">
+
+            <div class=" modal-action">
                 <button type="submit" class="btn text-gray-50 btn-primary">Add subject to students</button>
             </div>
     </div>

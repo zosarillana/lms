@@ -59,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             if (!empty($student_password)) {
-                $stmt->bind_param("ssssssssssisssssssssss", $student_id, $student_fname, $student_mname, $student_lname, $student_gender, $student_birthdate, $student_address, $student_email, $strand_name, $strand_id, $student_gradelevel, $student_guardian, $student_guardian_contact, $student_guardian_address, $student_guardian_work, $student_2ndguardian, $student_2ndguardian_contact, $student_2ndguardian_address, $student_2ndguardian_work, $student_username, $hashed_password, $id);
+                $stmt->bind_param("ssssssssssssssssssssss", $student_id, $student_fname, $student_mname, $student_lname, $student_gender, $student_birthdate, $student_address, $student_email, $strand_name, $strand_id, $student_gradelevel, $student_guardian, $student_guardian_contact, $student_guardian_address, $student_guardian_work, $student_2ndguardian, $student_2ndguardian_contact, $student_2ndguardian_address, $student_2ndguardian_work, $student_username, $hashed_password, $id);
             } else {
-                $stmt->bind_param("ssssssssssissssssssss", $student_id, $student_fname, $student_mname, $student_lname, $student_gender, $student_birthdate, $student_address, $student_email, $strand_name, $strand_id, $student_gradelevel, $student_guardian, $student_guardian_contact, $student_guardian_address, $student_guardian_work, $student_2ndguardian, $student_2ndguardian_contact, $student_2ndguardian_address, $student_2ndguardian_work, $student_username, $id);
+                $stmt->bind_param("sssssssssssssssssssss", $student_id, $student_fname, $student_mname, $student_lname, $student_gender, $student_birthdate, $student_address, $student_email, $strand_name, $strand_id, $student_gradelevel, $student_guardian, $student_guardian_contact, $student_guardian_address, $student_guardian_work, $student_2ndguardian, $student_2ndguardian_contact, $student_2ndguardian_address, $student_2ndguardian_work, $student_username, $id);
             }
             if ($stmt->execute()) {
                 if ($conn->affected_rows > 0) {

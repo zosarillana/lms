@@ -17,18 +17,14 @@
                         <img src="../../../images/logo-nobg.png" style="width: 85%;" alt="Image description">
                     </li>
                     <label class="ml-4 mb-5 fs-10 font-semibold text-lg">
-                        Admin
+                        Faculty
                     </label>
                     <li class="font-normal text-lg"><a href="../dashboard/index.php"> Dashboard</a></li>
-                    <li class="font-normal text-lg"><a href="../../../views/admin/all_accounts/index.php">All accounts</a></li>
-                    <li class="font-normal text-lg"><a href="../../../views/admin/students/index.php">Student</a></li>
-                    <li class="font-normal text-lg"><a href="../../../views/admin/teachers/index.php">Teacher</a></li>
-                    <li class="font-normal text-lg"><a href="../../../views/admin/courses/index.php">Strand</a></li>
-                    <li class=" font-normal text-lg"><a href="../../../views/admin/subjects/index.php">Subjects</a></li>
-                    <li class=" font-normal text-lg"><a href="../../../views/admin/schedules/index.php">Schedules</a></li>
-                    <li class="font-normal text-lg"><a href="../../../views/admin/credentials/index.php">Credential Requests</a></li>
-                    <li class="font-normal text-lg"><a href="../../../views/admin/announcements/index.php">Announcement</a></li>
-                    <li class="font-normal text-lg"><a href="../../../views/admin/settings/index.php">Settings</a></li>
+                    <li class="font-normal text-lg"><a href="../../../views/teacher/student_list/index.php">Student List</a></li>
+                    <li class="font-normal text-lg"><a href="../../../views/teacher/grading/index.php">Grading</a></li>
+                    <li class="font-normal text-lg"><a href="../../../views/teacher/subject_list/index.php">Subject List</a></li>
+                    <li class=" font-normal text-lg"><a href="../../../views/teacher/attendance/index.php">Attendance</a></li>
+                    <li class="font-normal text-lg"><a href="../../../views/teacher/settings/index.php">Settings</a></li>
                     <li class="font-normal text-lg"><a href="../../../php/logout.php">Logout</a></li>
                 </ul>
             </div>

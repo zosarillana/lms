@@ -25,10 +25,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_fullname'] = $user_data['user_fullname'];
             $_SESSION['user_username'] = $user_data['user_username'];
 
-            // Password is correct, set success message
-            $_SESSION['success_message'] = "Login successful";
-            // Redirect to appropriate page
-            header("Location: ../views/admin/dashboard/index.php");
+            // Check user type before redirecting
+            if ($user_data['user_type'] == 'Teacher') {
+                // Password is correct, redirect to teacher dashboard
+                $_SESSION['success_message'] = "Login successful";
+                header("Location: ../views/teacher/dashboard/index.php");
+            } else {
+                // Password is correct, redirect to admin dashboard (or relevant page)
+                $_SESSION['success_message'] = "Login successful";
+                header("Location: ../views/admin/dashboard/index.php"); // Replace with appropriate path
+            }
             exit();
         } else {
             // Password is incorrect, set error message
@@ -42,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Close prepared statement and database connection
     $sql->close();
     $conn->close();
-
-    // Redirect back to login page
-    header("Location: ../index.php");
-    exit();
 }
+
+// Redirect back to login page if not a POST request
+header("Location: ../index.php");
+exit();
